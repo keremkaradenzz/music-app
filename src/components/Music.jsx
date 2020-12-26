@@ -25,7 +25,7 @@ function Music({musics}) {
         
           </div>
      
-             ))  : <p>not found..</p>
+             ))  : <p>not found...</p>
             
          }
         <Player play={play}  data ={musics}/> 

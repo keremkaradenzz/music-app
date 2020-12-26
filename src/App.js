@@ -21,6 +21,8 @@ function App() {
   const [musics, setMusics] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [search, setSearch] = useState('');
+  const [loading , setLoading] = useState(true);
+  const [counter, setCounter] = useState(true);
   let API;
 
 
@@ -41,6 +43,7 @@ function App() {
   //Music Search
   const [selected, setSelected] = useState(0)
   const handleClick = (e) => {
+    setCounter(false);
     axios.get(API)
       .then(function (response) {
         // handle success 
@@ -50,6 +53,7 @@ function App() {
         }
         else {
           setMusics(response.data.musics)
+          setLoading(false);
         }
       })
       .catch(function (error) {
@@ -101,19 +105,35 @@ function App() {
                 <button className="btn btn-outline-primary mt-md-5 mt-0" onClick={handleClick} > Search</button>
             </div>
             {
-              selectOptions === "1" && <Music musics={musics} />
+              selectOptions === "1" && !counter ?  (!loading ? <Music musics={musics} /> : <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>)  : null
             }
             {
               selectOptions === "2" && <Album musics={musics} searchValue={search} />
             }
             {
-              selectOptions === "3" && <Artist musics={musics} searchValue={search} />
+              selectOptions === "3" && !counter ?  (!loading ? <Album musics={musics} searchValue={search} /> : <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>)  : null
             }
             {
-              selectOptions === "4" && <Music musics={musics} searchValue={search} />
+              selectOptions === "4" && !counter ?  (!loading ? <Music musics={musics} searchValue={search} /> : <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>)  : null
             }
             {
-              selectOptions === "5" && <LastAlbums albums={albums} />
+              selectOptions === "5" && !counter ?  (!loading ?  <LastAlbums albums={albums} /> : <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>)  : null
             }
 
 
