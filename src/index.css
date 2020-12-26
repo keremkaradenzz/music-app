@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.card {
+  box-shadow:2px 2px 2px 2px rgb(165, 157, 157)!important;
+}
+
+
+.card .image-second {
+  z-index : -1 ;
+  position: absolute;
+  width:6rem;
+  height:6rem;
+  margin-left: 6rem;
+  margin-top: 6rem;
+}
+
+
+.card:hover .image-second  {
+  display:block;
+  z-index: 2;
+
+}
+
+.card:hover .image-first  {
+  z-index:1; 
+  position:relative;
+  background-color: white;
+  opacity: 0.5;
+  
+
+}
+
+
